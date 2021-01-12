@@ -2,6 +2,7 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+
 export const environment = {
   production: false,
   firebase: {
@@ -12,7 +13,8 @@ export const environment = {
     storageBucket: "testfire-f203b.appspot.com",
     messagingSenderId: "1046031826553",
     appId: "1:1046031826553:web:b348220b03478988b91ea8",
-    measurementId: "G-0C42V7S6SC"
+    measurementId: "G-0C42V7S6SC",
+  //  credential: credential.cert(serviceAccount),
   }
 };
 

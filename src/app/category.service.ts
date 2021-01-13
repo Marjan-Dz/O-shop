@@ -9,6 +9,13 @@ export class CategoryService {
   constructor(private db: AngularFireDatabase) { }
 
   getCategories(){
-    return this.db.list('/categories',ref => ref.orderByChild('name')).valueChanges()
+    return this.db.list('/categories',ref => ref.orderByChild('name'))
+       .snapshotChanges();
+       //.subscribe(res => {
+      //   res.forEach(e =>{
+      //     console.log(e.key)
+      //     console.log(e.payload.val())
+      //   })
+      //  })
   }
 }

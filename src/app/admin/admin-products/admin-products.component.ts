@@ -1,6 +1,8 @@
 import { ProductService } from 'src/app/product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { ConstantPool } from '@angular/compiler';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-admin-products',
@@ -8,13 +10,15 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit , OnDestroy {
-  products: {title:string}[];
+  products: Product[];
   filteredProducts: any[];
   subscription: Subscription;
 
   constructor(private productService: ProductService) { 
-    this.subscription = this.productService.getAll()
-    .subscribe(products => this.filteredProducts = this.products = this.products);
+    this.subscription = this.productService.getAll()  
+    .subscribe(products => {
+      this.filteredProducts = this.products = products; 
+    });
   }
 
   filter(query: string){

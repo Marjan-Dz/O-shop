@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/category.service';
 import { ProductService } from 'src/app/product.service';
 import 'rxjs/add/operator/take';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-product-form',
@@ -11,11 +12,11 @@ import 'rxjs/add/operator/take';
 })
 export class ProductFormComponent implements OnInit {
   categories$;
-  product = {};
+  product : Product;
   id;
 
   constructor(
-    private router: Router,
+    private router: Router, 
     private route: ActivatedRoute,
     private categoryService : CategoryService ,
      private productService : ProductService) {
@@ -23,7 +24,8 @@ export class ProductFormComponent implements OnInit {
     
     debugger;
     this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id) this.productService.get(this.id).valueChanges().take(1).subscribe(po => this.product = po);
+    if (this.id) this.productService.get(this.id)
+    .take(1).subscribe(po => this.product = po );
    }
 
    save(product){

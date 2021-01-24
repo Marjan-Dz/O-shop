@@ -12,7 +12,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
-import { DataTableModule } from 'angular-4-data-table';
+import { NgxDataTableModule} from "angular-9-datatable";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -52,7 +52,7 @@ import { ProductService } from './product.service';
     AngularFireAuthModule,
     NgbModule,
     FormsModule,
-    DataTableModule,
+    NgxDataTableModule,
     CustomFormsModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent},

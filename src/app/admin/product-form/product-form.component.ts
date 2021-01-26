@@ -26,6 +26,10 @@ export class ProductFormComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) this.productService.get(this.id)
     .take(1).subscribe(po => this.product = po );
+
+    if(!this.id)
+      this.product = new Product();
+
    }
 
    save(product){

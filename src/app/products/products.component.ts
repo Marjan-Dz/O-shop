@@ -3,20 +3,23 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
 import { ProductService } from '../product.service';
 import 'rxjs/add/operator/switchMap';
+import { ShoppingCartService } from '../shopping-cart.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   category: string;
+  cart: any;
 
   constructor(
     route: ActivatedRoute,
-    productService: ProductService) { 
+    productService: ProductService,
+    private shoppingCartService: ShoppingCartService) {
     productService.getAll().switchMap(products => {
       this.products = products
       return route.queryParamMap})
@@ -29,4 +32,9 @@ export class ProductsComponent {
       });
   }
 
+  async ngOnInit(){
+    let cart =  await this.shoppingCartService.getCart();
+  }
+
 }
+ 

@@ -1,6 +1,16 @@
+
 .card{
     margin-bottom: 30px;
+    /* height: 350px; */
 }
 .card-footer{
     padding: 0;
+
+}
+.card-footer button{
+    cursor: pointer;
+    
+}
+.item-count{
+    padding-top: 5px;
 }

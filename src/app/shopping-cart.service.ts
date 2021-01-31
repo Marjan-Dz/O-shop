@@ -35,14 +35,26 @@ export class ShoppingCartService {
       return result.key;
   }
 
-  async addToCart(product: Product){
+   addToCart(product: Product){
+    //let cartId = await this.getOrCreateCartId();
+    //let item$ = this.getItem(cartId,product.id);
+    //item$.snapshotChanges().take(1).subscribe(item => {
+      //refactoring
+      //item$.update({ product: product, quantity: (item.payload.exportVal()?.quantity || 0) + 1});
+      // if (item.payload.exists()) item$.update({ quantity: item.payload.exportVal().quantity + 1});
+      // else item$.set({product: product, quantity:1});
+      this.updateItemQuantity(product,-1);
+    }
+
+   removeFromCart(product: Product){
+    this.updateItemQuantity(product,1);
+  }
+
+  private async updateItemQuantity(product: Product,change: number){
     let cartId = await this.getOrCreateCartId();
     let item$ = this.getItem(cartId,product.id);
     item$.snapshotChanges().take(1).subscribe(item => {
-      //refactoring
-      //item$.update({ product: product, quantity: (item.payload.exportVal().quantity || 0) + 1});
-      if (item.payload.exists()) item$.update({ quantity: item.payload.exportVal().quantity + 1});
-      else item$.set({product: product, quantity:1});
-    });
-  }
+      item$.update({ product: product, quantity: (item.payload.exportVal()?.quantity || 0) + change});
+  });
+}
 }

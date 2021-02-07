@@ -13,8 +13,10 @@
     </thead>
 <tbody>
     <tr *ngFor='let item of cart.items'>
-        <td>{{item.product.title}}</td>
-        <td>{{item.quantity}}</td>
+        <td>{{item.title}}</td>
+        <td>
+            <product-quantity [product]="item" [shopping-cart]="cart"></product-quantity>
+        </td>
         <td>{{item.totalPrice | currency:'USD':true}}</td>
     </tr>
 </tbody>
@@ -26,6 +28,9 @@
     </tr>
 </tfoot>
 </table>
+<button 
+(click)="clearCart()"
+class="btn btn-danger btn-sm">Clear Shopping Cart</button>
 </ng-container>
 
 

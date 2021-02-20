@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { ShoppingCartService } from './../shopping-cart.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ShoppingCart } from '../models/shopping-cart';
+import { Shipping } from '../models/shipping';
 
 @Component({
   selector: 'app-check-out',
@@ -10,7 +11,7 @@ import { ShoppingCart } from '../models/shopping-cart';
   styleUrls: ['./check-out.component.css']
 })
 export class CheckOutComponent implements OnInit, OnDestroy { 
-  shipping = {}; 
+  shipping : Shipping;
   cart: ShoppingCart;
   subscription:Subscription;
   
@@ -33,7 +34,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
       shipping: this.shipping,
       items: this.cart.items.map(i=>{
         return {
-          produc: {
+          product: {
             title: i.title,
             imageUrl: i.imageUrl,
             price: i.price
